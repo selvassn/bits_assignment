@@ -13,4 +13,9 @@ export interface ICharacter {
     status: string;
     episode: [IEpisode];
     origin: IOrigin;
+    isFavorite?: boolean
+}
+
+export interface ICharacters {
+    results: ICharacter[]
 }

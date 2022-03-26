@@ -1,8 +1,29 @@
 .characterList {
-    .characterCard {
-        border: none;
+  .characterCard {
+    border: none;
+    & > div {
+      padding: 0;
+      border-radius: 1em;
     }
-    .anchor {
+    img {
+      height: 100%;
+      width: 100%;
+      border-radius: 1em;
+    }
+    h5 {
+      i {
         color: white;
+      }
+    }
+  }
+  .anchor {
+    color: white;
+  }
+}
+@media only screen and (min-width: 768px) {
+    .characterCard {
+        & > div {
+            height: 230px;
+        }
     }
 }

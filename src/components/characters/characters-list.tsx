@@ -1,10 +1,40 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import APP_CONST from "../../core/constants/app-constants";
 import { useGetCharacters } from "../../core/graphQL/request";
 import { ICharacter } from "../../core/interface/ICharacters";
-import styles from './characters.module.scss';
+import CharacterCard from "./character-card";
+import styles from "./characters.module.scss";
 const CharactersList = () => {
+  const [characterList, setCharacterList] = useState<ICharacter[]>([]);
+
   const { status, data, isLoading } = useGetCharacters();
+
+  useEffect(() => {
+    if (data?.results) {
+      setCharacterList(data.results);
+      sessionStorage.setItem(APP_CONST.SESSION_STORAGE_KEY, JSON.stringify([]));
+    }
+  }, [isLoading]);
+
+  const toggleFavorite = (selectedData: ICharacter) => {
+
+    const favList: ICharacter[] = JSON.parse(sessionStorage.getItem(APP_CONST.SESSION_STORAGE_KEY)!);
+    const index = favList.map(object => object.id).indexOf(selectedData.id);
+    if(index === -1) {
+      favList.push({...selectedData, isFavorite: !selectedData.isFavorite})
+    } else {
+      favList.splice(index,1);
+    }
+
+    setCharacterList(
+      characterList.map((item) =>
+        item.id === selectedData.id
+          ? { ...item, isFavorite: !selectedData.isFavorite }
+          : item
+      )
+    );
+    sessionStorage.setItem(APP_CONST.SESSION_STORAGE_KEY, JSON.stringify(favList));
+  };
 
   if (isLoading) {
     return <p> Loading</p>;
@@ -19,39 +49,8 @@ const CharactersList = () => {
           <span>Error</span>
         ) : (
           <>
-            {data.results.map((character: ICharacter) => (
-              <div className={`card col-md-6 bg-dark mb-4 ${styles.characterCard}`}>
-                <div
-                  className="card-body d-md-flex"
-                  style={{ backgroundColor: "rgb(60, 62, 68)" }}
-                >
-                  <div>
-                    <img src={character.image} />
-                  </div>
-                  <div className="">
-                    <div className="character-info">
-                      <h5>
-                        <Link className={styles.anchor} to={`character/${character.id}`}>
-                          {character.name}
-                        </Link>
-                      </h5>
-                      <p>{character.status}</p>
-                    </div>
-                    
-                      <div>
-                        <p>Last known location:</p>
-                        <p>{character.origin.name}</p>
-                      </div>
-                   
-                    {character.episode.length > 0 && (
-                      <div>
-                        <p>First seen in:</p>
-                        <p>{character.episode[0].name}</p>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
+            {characterList.map((character: ICharacter) => (
+             <CharacterCard toggleFavCallback={toggleFavorite} key={character.id} character={character}></CharacterCard>
             ))}
           </>
         )}
