@@ -24,11 +24,16 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 - Bootstrap - To use the basic styles and maintain layout
 - React-Bootstrap - To use the basic components like pagination
 - React-query - To fetch the data
+- react-hook-form - To Handle the forms
 
 ## Logged Hours
 
 - 25-Mar-2022   - 8.30 - 11.30PM (3 hours)
 - 26-Mar-2022   - 10.00 - 11.00AM (1 hour)
 - 26-Mar-2022   - 10.00 - 11.30PM (1.5 hours)
+
+## Stylings
+- Have extensively used bootstrap for styling and css modules with sass
+- Havent used styled components in project
 
 

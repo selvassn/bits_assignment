@@ -12,7 +12,6 @@ const FavouriteCharacters = () => {
         JSON.parse(sessionStorage.getItem(APP_CONST.SESSION_STORAGE_KEY)!)
       );
     }
-    console.log(favCharacters);
   }, []);
 
   return (

@@ -19,3 +19,7 @@ export interface ICharacter {
 export interface ICharacters {
     results: ICharacter[]
 }
+export interface ICharacterFilter {
+    name: string;
+    gender: string;
+}
