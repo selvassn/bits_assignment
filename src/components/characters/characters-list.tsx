@@ -6,10 +6,9 @@ import { ICharacter, ICharacterFilter } from "../../core/interface/ICharacters";
 import CharacterCard from "./character-card";
 import styles from "./characters.module.scss";
 import CharacterFilter from "./character-filters";
-import { Link } from "react-router-dom";
 import { FavCountContext, FavCountContextType } from "../../core/context/app-context";
 const CharactersList = () => {
-  const {favCount, setFavCount} = useContext(FavCountContext) as FavCountContextType;
+  const { setFavCount} = useContext(FavCountContext) as FavCountContextType;
   const [characterList, setCharacterList] = useState<ICharacter[]>([]);
   const [filterObj, setFilterObj] = useState<ICharacterFilter>({
     name: "",

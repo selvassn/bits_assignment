@@ -14,8 +14,9 @@ const RMHeader = () => {
         <div>
           <Link to="/favourite" className={`"btn btn-link ${styles.rmLinkBtn}`}>
             <i className="bi bi-heart-fill btn btn-link"></i> 
+            <span className={styles.counter}>{favCount}</span>
           </Link>
-         <span className={styles.counter}>{favCount}</span>
+         
         </div>
       </div>
     </header>

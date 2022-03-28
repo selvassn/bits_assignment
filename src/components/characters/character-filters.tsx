@@ -8,7 +8,7 @@ const checkEqual = (prevProps: any, nextProps: any) => {
 
 const CharacterFilter = (props: any) => {
   let filterData: ICharacterFilter = props.filterData;
-  const [filterObj, setFilterObj] = useState<ICharacterFilter>(filterData);
+  const [, setFilterObj] = useState<ICharacterFilter>(filterData);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     filterData.name = event.target.value;

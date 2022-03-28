@@ -6,7 +6,7 @@ import CharacterCard from "./character-card";
 import styles from "./characters.module.scss";
 const FavouriteCharacters = () => {
   const [favCharacters, setFavCharacters] = useState<ICharacter[]>([]);
-  const {favCount, setFavCount} = useContext(FavCountContext) as FavCountContextType;
+  const { setFavCount} = useContext(FavCountContext) as FavCountContextType;
   useEffect(() => {
     if (sessionStorage.getItem(APP_CONST.SESSION_STORAGE_KEY)) {
       setFavCharacters(
