@@ -1,5 +1,7 @@
+@import '../../styles/colors.scss';
 .characterList {
   .characterCard {
+    animation: fadeInAnimation 1s linear;
     border: none;
     & > div {
       padding: 0;
@@ -15,6 +17,26 @@
         color: white;
       }
     }
+    .cardLabel {
+       color: var(--color-label);
+    }
+    .status{
+        & > span{
+            height: 10px;
+            width: 10px;
+            display: inline-block;
+            border-radius: 50%;
+           &.alive {
+            background-color: var(--color-alive);
+           }
+           &.dead {
+            background-color: var(--color-dead);
+           }
+           &.unknown {
+           background-color: var(--color-label);
+           }
+        }
+    }
   }
   .anchor {
     color: white;
@@ -27,3 +49,12 @@
         }
     }
 }
+  
+  @keyframes fadeInAnimation {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }

@@ -1,21 +1,43 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import Spinner from "react-bootstrap/Spinner";
 import APP_CONST from "../../core/constants/app-constants";
 import { useGetCharacters } from "../../core/graphQL/request";
 import { ICharacter, ICharacterFilter } from "../../core/interface/ICharacters";
 import CharacterCard from "./character-card";
 import styles from "./characters.module.scss";
 import CharacterFilter from "./character-filters";
+import { Link } from "react-router-dom";
+import { FavCountContext, FavCountContextType } from "../../core/context/app-context";
 const CharactersList = () => {
+  const {favCount, setFavCount} = useContext(FavCountContext) as FavCountContextType;
   const [characterList, setCharacterList] = useState<ICharacter[]>([]);
-  const [filterObj, setFilterObj] = useState<ICharacterFilter>({name: '', gender: ''});
+  const [filterObj, setFilterObj] = useState<ICharacterFilter>({
+    name: "",
+    gender: "",
+  });
   const [searchEnabled, setSearchEnabled] = useState<boolean>(true);
-  const { status, data, isLoading } = useGetCharacters(searchEnabled, filterObj);
+  const { status, data, isLoading } = useGetCharacters(
+    searchEnabled,
+    filterObj
+  );
 
   useEffect(() => {
     if (data?.results) {
-      setCharacterList(data.results);
       setSearchEnabled(false);
-      sessionStorage.setItem(APP_CONST.SESSION_STORAGE_KEY, JSON.stringify([]));
+      if(sessionStorage.getItem(APP_CONST.SESSION_STORAGE_KEY)) {
+       const fav: ICharacter[] = JSON.parse(sessionStorage.getItem(APP_CONST.SESSION_STORAGE_KEY)!);
+        fav.forEach((favItem: ICharacter) => {
+          const filteredItem: ICharacter =  data.results.filter((item: ICharacter) => item.id === favItem.id)[0];
+          if(filteredItem) {
+            filteredItem.isFavorite = true;
+          }
+        });
+        setCharacterList(data.results);
+        setFavCount(fav.length);
+      } else {
+        sessionStorage.setItem(APP_CONST.SESSION_STORAGE_KEY, JSON.stringify([]));
+        setCharacterList(data.results);
+      }
     }
   }, [isLoading]);
 
@@ -26,10 +48,11 @@ const CharactersList = () => {
     const index = favList.map((object) => object.id).indexOf(selectedData.id);
     if (index === -1) {
       favList.push({ ...selectedData, isFavorite: !selectedData.isFavorite });
+     
     } else {
       favList.splice(index, 1);
     }
-
+    setFavCount(favList.length);
     setCharacterList(
       characterList.map((item) =>
         item.id === selectedData.id
@@ -43,24 +66,28 @@ const CharactersList = () => {
     );
   };
 
-  const filterCharacters = (data: ICharacterFilter ) => {
+  const filterCharacters = (data: ICharacterFilter) => {
     setFilterObj(data);
     setSearchEnabled(true);
-  }
-  
-
-  if (isLoading) {
-    return <p> Loading</p>;
-  }
+  };
 
   return (
     <div className={styles.characterList}>
       <div className="row">
-      <CharacterFilter filterCallback = {filterCharacters}></CharacterFilter>
+        <CharacterFilter
+          filterCallback={filterCharacters}
+          filterData={filterObj}
+        ></CharacterFilter>
         {isLoading ? (
-          "Loading..."
+          <div className="text-center">
+            <Spinner animation="border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+          </div>
         ) : status === "error" ? (
-          <span>Error</span>
+          <div className="text-center mt-4">
+          <h2>No data found, Please change your search Criteria</h2>
+          </div>
         ) : (
           <>
             {characterList.map((character: ICharacter) => (

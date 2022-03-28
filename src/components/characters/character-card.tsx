@@ -5,7 +5,7 @@ import styles from "./characters.module.scss";
 const CharacterCard = (props: any) => {
   return (
     <div
-      className={`card col-md-6 bg-dark mb-4 ${styles.characterCard}`}
+      className={`card col-lg-6 bg-dark mb-4 ${styles.characterCard} `}
     >
       <div
         className="card-body d-md-flex"
@@ -27,15 +27,15 @@ const CharacterCard = (props: any) => {
                 }`}
               ></i>
             </h5>
-            <div>{props.character.status}</div>
+            <div className={`${styles.status}`}><span className={styles[props.character.status.toLowerCase()]} ></span> {props.character.status}</div>
           </div>
           <div>
-            <p>Last known location:</p>
+            <div className={`${styles.cardLabel}`}>Last known location:</div>
             <p>{props.character.origin.name}</p>
           </div>
           {props.character.episode.length > 0 && (
             <div>
-              <p>First seen in:</p>
+              <div className={`${styles.cardLabel}`}>First seen in:</div>
               <p>{props.character.episode[0].name}</p>
             </div>
           )}
