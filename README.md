@@ -14,29 +14,30 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
 ## Packages used
 
 - Bootstrap - To use the basic styles and maintain layout
-- React-Bootstrap - To use the basic components like pagination
+- React-Bootstrap - To use the basic components like spinner
 - React-query - To fetch the data
+- graphql-request - To fetch the data using graphQL
 
 ## Logged Hours
 
-- 25-Mar-2022   - 8.30 - 11.30PM (3 hours)
-- 26-Mar-2022   - 10.00 - 11.00AM (1 hour)
-- 26-Mar-2022   - 10.00 - 11.30PM (1.5 hours)
-- 27-Mar-2022   - 2.00Pm - 4.00Pm (2 hours)
+- 25-Mar-2022   - 8.30PM - 11.30PM (3 hours)
+- 26-Mar-2022   - 10.00AM - 11.00AM (1 hour)
+- 26-Mar-2022   - 10.00PM - 11.30PM (1.5 hours)
+- 27-Mar-2022   - 2.00PM - 4.00PM (2 hours)
 - 27-Mar-2022   - 8.00PM - 10.30PM (2.5 hours)
 - 28-Mar-2022   - 5.30PM - 6.30PM (1hr)
+- 28-Mar-2022   - 10.00PM - 11.30PM(1.5 hours)
+- 29-Mar-2022   - 7.00AM - 8.30PM(1.5 hours)
 
 
 ## Stylings
 - Have extensively used bootstrap for styling and css modules with sass
-- Havent used styled components in project
+- Havent used styled components in this project
+
+## Additional Points
+- Couldnt find a time to write test cases, If needed will write it in coming weekend
 
 

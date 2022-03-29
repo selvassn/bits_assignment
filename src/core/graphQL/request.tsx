@@ -1,8 +1,9 @@
 import { GraphQLClient, gql } from "graphql-request";
 import { useQuery } from "react-query";
+import APP_CONST from "../constants/app-constants";
 import { ICharacterFilter } from "../interface/ICharacters";
 
-const url: string = "https://rickandmortyapi.com/graphql"; //process.env.API_URL!;
+const url: string = APP_CONST.URL;
 
 const graphQLClinent = new GraphQLClient(url);
 
@@ -79,7 +80,7 @@ export function useGetCharacters(isEnabled: boolean, search: ICharacterFilter) {
   return useQuery(
     ["get-characters", search],
     async () => getCharacters(search),
-    { enabled: isEnabled }
+    { enabled: isEnabled, cacheTime:0 }
   );
 }
 

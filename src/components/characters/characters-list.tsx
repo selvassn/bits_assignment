@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
-import APP_CONST from "../../core/constants/app-constants";
-import { useGetCharacters } from "../../core/graphQL/request";
-import { ICharacter, ICharacterFilter } from "../../core/interface/ICharacters";
 import CharacterCard from "./character-card";
 import styles from "./characters.module.scss";
 import CharacterFilter from "./character-filters";
 import { FavCountContext, FavCountContextType } from "../../core/context/app-context";
+import APP_CONST from "../../core/constants/app-constants";
+import { useGetCharacters } from "../../core/graphQL/request";
+import { ICharacter, ICharacterFilter } from "../../core/interface/ICharacters";
 const CharactersList = () => {
   const { setFavCount} = useContext(FavCountContext) as FavCountContextType;
   const [characterList, setCharacterList] = useState<ICharacter[]>([]);
@@ -38,8 +38,12 @@ const CharactersList = () => {
         setCharacterList(data.results);
       }
     }
-  }, [isLoading]);
+  }, [isLoading]);// eslint-disable-line react-hooks/exhaustive-deps
 
+  /**
+   * Handler to toggle the fav icon
+   * @param selectedData 
+   */
   const toggleFavorite = (selectedData: ICharacter) => {
     const favList: ICharacter[] = JSON.parse(
       sessionStorage.getItem(APP_CONST.SESSION_STORAGE_KEY)!

@@ -16,8 +16,8 @@ const CharacterCard = (props: any) => {
         </div>
         <div className="px-4 pt-2">
           <div>
-            <h5>
-              <Link className={styles.anchor} to={`character/${props.character.id}`}>
+            <h5 className="mb-0">
+              <Link className={styles.anchor} to={`/character/${props.character.id}`}>
                 {props.character.name}
               </Link>
               <i
@@ -27,7 +27,7 @@ const CharacterCard = (props: any) => {
                 }`}
               ></i>
             </h5>
-            <div className={`${styles.status}`}><span className={styles[props.character.status.toLowerCase()]} ></span> {props.character.status}</div>
+            <p className={`${styles.status}`}><span className={styles[props.character.status.toLowerCase()]} ></span> {props.character.status}</p>
           </div>
           <div>
             <div className={`${styles.cardLabel}`}>Last known location:</div>

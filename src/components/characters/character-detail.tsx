@@ -1,17 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Spinner from "react-bootstrap/esm/Spinner";
 import { useParams } from "react-router-dom";
 import { useGetCharacterDetails } from "../../core/graphQL/request";
 
 const CharacterDetail = (props: any) => {
   const { id } = useParams();
-  const { status, data, isLoading } = useGetCharacterDetails(1);
+  const { status, data, isLoading } = useGetCharacterDetails(parseInt(id!));
 
-  useEffect(() => {
-    if (data) {
-      console.log(data);
-    }
-  }, [isLoading]);
   return (
     <React.Fragment>
       {isLoading ? (
@@ -28,14 +23,14 @@ const CharacterDetail = (props: any) => {
         <div>
           <h2 className="text-center pb-4">{data.name}</h2>
           <div className="row">
-            <div className="col-md-3">
+            <div className="col-lg-4 text-center">
               <img
                 className="text-center pb-4"
                 src={data.image}
                 alt={data.name}
               />
             </div>
-            <div className="col-md-3">
+            <div className="col-md-4">
               <h3>General</h3>
               <p>
                 <strong> Name :</strong> {data.name}
@@ -56,13 +51,9 @@ const CharacterDetail = (props: any) => {
                 <strong> Location :</strong> {data.location.name}
               </p>
             </div>
-            <div className="col-md-3">
+            <div className="col-md-4">
               <h3>Episodes</h3>
               <ul>
-                {/* {data.episode.map((epidata: any) => {
-                      <li>1{epidata.name}</li>
-                  })} */}
-
                 {data.episode.map((epidata: any) => (
                   <li key={epidata.id}>{epidata.name}</li>
                 ))}

@@ -1,4 +1,4 @@
-@import '../../styles/colors.scss';
+@import "../../styles/colors.scss";
 .characterList {
   .characterCard {
     animation: fadeInAnimation 1s linear;
@@ -18,24 +18,24 @@
       }
     }
     .cardLabel {
-       color: var(--color-label);
+      color: var(--color-label);
     }
-    .status{
-        & > span{
-            height: 10px;
-            width: 10px;
-            display: inline-block;
-            border-radius: 50%;
-           &.alive {
-            background-color: var(--color-alive);
-           }
-           &.dead {
-            background-color: var(--color-dead);
-           }
-           &.unknown {
-           background-color: var(--color-label);
-           }
+    .status {
+      & > span {
+        height: 10px;
+        width: 10px;
+        display: inline-block;
+        border-radius: 50%;
+        &.alive {
+          background-color: var(--color-alive);
         }
+        &.dead {
+          background-color: var(--color-dead);
+        }
+        &.unknown {
+          background-color: var(--color-label);
+        }
+      }
     }
   }
   .anchor {
@@ -43,18 +43,18 @@
   }
 }
 @media only screen and (min-width: 768px) {
-    .characterCard {
-        & > div {
-            height: 230px;
-        }
-    }
-}
-  
-  @keyframes fadeInAnimation {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
+  .characterCard {
+    & > div {
+      height: 230px;
     }
   }
+}
+
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

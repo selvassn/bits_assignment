@@ -2,14 +2,14 @@ import debounce from "lodash.debounce";
 import React, { useState, useMemo } from "react";
 import { ICharacterFilter } from "../../core/interface/ICharacters";
 
-const checkEqual = (prevProps: any, nextProps: any) => {
-  return false;
-};
-
 const CharacterFilter = (props: any) => {
   let filterData: ICharacterFilter = props.filterData;
   const [, setFilterObj] = useState<ICharacterFilter>(filterData);
 
+  /**
+   * Handler for search box changes
+   * @param event 
+   */
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     filterData.name = event.target.value;
     setFilterObj((prevState) => ({
@@ -19,6 +19,10 @@ const CharacterFilter = (props: any) => {
     props.filterCallback(filterData);
   };
 
+  /**
+   * Handler for dropdown changes
+   * @param event 
+   */
   const handleGenderChange = (event: any) => {
     filterData.gender = event.target.value;
     setFilterObj((prevState) => ({
@@ -28,7 +32,7 @@ const CharacterFilter = (props: any) => {
     props.filterCallback(filterData);
   }
 
-  const debouncedHandler = useMemo(() => debounce(handleSearchChange, 300), []);
+  const debouncedHandler = useMemo(() => debounce(handleSearchChange, 300), [props.filterData.name]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <React.Fragment>
@@ -56,4 +60,4 @@ const CharacterFilter = (props: any) => {
     </React.Fragment>
   );
 };
-export default React.memo(CharacterFilter, checkEqual);
+export default React.memo(CharacterFilter);
