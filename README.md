@@ -14,12 +14,26 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
+## APP Usage
+- Run `npm start` it will open the app in localhost
+- In left header section 'Ricky Morty App' link will be there to navigate to home page
+- In Right header section 'Heart' symbol link will be there to navigate to favorite page
+- In home page it will list all the characters , when user clicks on the name of the character it will navigate to details page
+
+## Additional Points
+- Couldnt find a time to write test cases, If needed will write it in coming weekend
+
 ## Packages used
 
 - Bootstrap - To use the basic styles and maintain layout
 - React-Bootstrap - To use the basic components like spinner
 - React-query - To fetch the data
 - graphql-request - To fetch the data using graphQL
+
+## Stylings
+- Have extensively used bootstrap for styling and css modules with sass
+- Havent used styled components in this project
+
 
 ## Logged Hours
 
@@ -33,11 +47,8 @@ You will also see any lint errors in the console.
 - 29-Mar-2022   - 7.00AM - 8.30PM(1.5 hours)
 
 
-## Stylings
-- Have extensively used bootstrap for styling and css modules with sass
-- Havent used styled components in this project
 
-## Additional Points
-- Couldnt find a time to write test cases, If needed will write it in coming weekend
+
+
 
 
