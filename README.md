@@ -16,9 +16,14 @@ You will also see any lint errors in the console.
 
 ## APP Usage
 - Run `npm start` it will open the app in localhost
-- In left header section 'Ricky Morty App' link will be there to navigate to home page
-- In Right header section 'Heart' symbol link will be there to navigate to favorite page
+- In header section 'Ricky Morty App' link will be there to navigate to home page
+- In header section 'Heart' symbol link will be there to navigate to favorite page
+- Characters shows green dot if its alive, shows red dot if its dead.
 - In home page it will list all the characters , when user clicks on the name of the character it will navigate to details page
+- In details page it will display the details of the character and episodes.
+- User can filter the characters based on gender and names
+- When user clicks on heart symbol which is next to the Character name will toggle the favourite list
+
 
 ## Additional Points
 - Couldnt find a time to write test cases, If needed will write it in coming weekend
